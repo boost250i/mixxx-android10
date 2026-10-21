@@ -360,7 +360,7 @@ QmlApplication::QmlApplication(
                 }
             });
 
-#if defined(Q_OS_ANDROID)  && __ANDROID_API__ >= 35
+#if defined(Q_OS_ANDROID) && __ANDROID_API__ >= 35
     APerformanceHintManager* manager = APerformanceHint_getManager();
     VERIFY_OR_DEBUG_ASSERT(manager) {
         return;
@@ -397,7 +397,7 @@ void QmlApplication::slotFrameSwapped() {
         QmlConfigProxy::notifyWaveformAverageFrameRateChanged();
     }
 #endif
-#if defined(Q_OS_ANDROID)
+#if defined(Q_OS_ANDROID) && __ANDROID_API__ >= 35
     VERIFY_OR_DEBUG_ASSERT(m_perfSession) {
         return;
     }
