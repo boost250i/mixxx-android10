@@ -2404,7 +2404,7 @@ if(QT6)
       mixxx-lib
       PUBLIC ANDROID_PACKAGE_NAME="org.mixxx"
     )
-    qt_add_executable(mixxx src/main.cpp MANUAL_FINALIZATION)
+    qt_add_executable(mixxx src/main.cpp src/android_link_compat.cpp MANUAL_FINALIZATION)
     set_property(
       TARGET mixxx
       PROPERTY
