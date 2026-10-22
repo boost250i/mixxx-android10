@@ -5781,3 +5781,8 @@ if(APPLE AND MACOS_BUNDLE)
   )
   install(SCRIPT "${CMAKE_CURRENT_BINARY_DIR}/BundleInstall.cmake")
 endif()
+
+# Provide glibc-compatible symbols required by prebuilt Android dependencies.
+if(ANDROID)
+  target_sources(mixxx PRIVATE src/android_link_compat.cpp)
+endif()
