@@ -177,7 +177,7 @@ jobs:
             artifacts_path: build/*.msi
             artifacts_slug: windows-winarm
             arch: arm64
-          - name: Android 15 arm64
+          - name: Android 10 arm64
             os: ubuntu-24.04
             # DBUILD_TESTING=OFF: error: OpenMP support and version of OpenMP (31, 40 or 45) differs
             cmake_args: >-
@@ -192,7 +192,7 @@ jobs:
               -DBUILD_BENCH=OFF
             buildenv_basepath: /home/runner/buildenv
             buildenv_script: tools/android_buildenv.sh
-            artifacts_name: Android 15 APK
+            artifacts_name: Android 10 APK
             artifacts_path: build/android-build/build/outputs/apk/release/*.apk
             artifacts_slug: android-15
             compiler_cache: ccache
