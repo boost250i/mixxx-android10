@@ -34,7 +34,9 @@
 #if defined(Q_OS_ANDROID)
 #include <android/api-level.h>
 #include <android/log.h>
+#if __ANDROID_API__ >= 33
 #include <android/performance_hint.h>
+#endif
 
 #include <QDir>
 #include <QFile>
@@ -360,7 +362,7 @@ QmlApplication::QmlApplication(
                 }
             });
 
-#if defined(Q_OS_ANDROID)
+#if defined(Q_OS_ANDROID) && __ANDROID_API__ >= 33
     APerformanceHintManager* manager = APerformanceHint_getManager();
     VERIFY_OR_DEBUG_ASSERT(manager) {
         return;
@@ -371,7 +373,9 @@ QmlApplication::QmlApplication(
         __android_log_print(ANDROID_LOG_WARN, "mixxx", "unable to create a ADPF session!");
     }
     else {
+#if __ANDROID_API__ >= 35
         APerformanceHint_setPreferPowerEfficiency(m_perfSession, false);
+#endif
         __android_log_print(ANDROID_LOG_VERBOSE, "mixxx", "ADPF session ready");
     }
 #endif
@@ -397,7 +401,7 @@ void QmlApplication::slotFrameSwapped() {
         QmlConfigProxy::notifyWaveformAverageFrameRateChanged();
     }
 #endif
-#if defined(Q_OS_ANDROID)
+#if defined(Q_OS_ANDROID) && __ANDROID_API__ >= 33
     VERIFY_OR_DEBUG_ASSERT(m_perfSession) {
         return;
     }
